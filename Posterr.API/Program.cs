@@ -1,3 +1,5 @@
+using Serilog;
+
 internal class Program
 {
     private static void Main(string[] args)
@@ -11,6 +13,8 @@ internal class Program
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
 
         var app = builder.Build();
 
