@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Posterr.API.Entities;
+using Posterr.API.Interfaces;
 using Posterr.API.Services;
 
 namespace Posterr.API.Controllers
@@ -8,10 +9,10 @@ namespace Posterr.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private UserService _userService;
-        public UserController()
+        private IUserService _userService;
+        public UserController(IUserService userService)
         {
-            _userService = new UserService();
+            _userService = userService;
         }
 
         [HttpGet]

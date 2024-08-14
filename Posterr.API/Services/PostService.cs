@@ -1,16 +1,19 @@
 ﻿using Posterr.API.Entities;
 using Posterr.API.Infrastructure.DAL.DAO;
 using Posterr.API.Infrastructure.DAL;
+using Posterr.API.Interfaces;
 
 namespace Posterr.API.Services
 {
-    public class PostService
+    public class PostService : IPostService
     {
-        private DBCommunication _dbComm;
+        private readonly IDBCommunicationFactory _dbCommFactory;
+        private IDBCommunication _dbComm;
 
-        public PostService()
+        public PostService(IDBCommunicationFactory dbCommunicationFactory)
         {
-            _dbComm = new DBCommunication(AppSettings.ConnectionStrings.MainDB);
+            _dbCommFactory = dbCommunicationFactory;
+            _dbComm = _dbCommFactory.Create(AppSettings.ConnectionStrings.MainDB);
         }
 
         public List<Post> GetPosts(PostQueryParameters queryParameters)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Posterr.API.Entities;
+using Posterr.API.Interfaces;
 using Posterr.API.Services;
 
 namespace Posterr.API.Controllers
@@ -8,10 +9,10 @@ namespace Posterr.API.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
-        private PostService _postService;
-        public PostController()
+        private IPostService _postService;
+        public PostController(IPostService postService)
         {
-            _postService = new PostService();
+            _postService = postService;
         }
 
         [HttpGet]
