@@ -26,11 +26,9 @@ namespace Posterr.API.Services
             return response;
         }
 
-        // Assume that the frontend is validating the posts amount from the user
+        // Assumes that the frontend is validating the posts amount from the user
         public void InsertPost(PostBody obj)
         {
-            // validar posts do dia
-
             if (obj.IdType > 1 && !obj.IdOriginalPost.HasValue)
                 throw new Exception("Posts that are not from type ORIGINAL require an IdOriginalPost");
 
