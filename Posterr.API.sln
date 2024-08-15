@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Posterr.API", "Posterr.API\Posterr.API.csproj", "{E1A8291E-BCD1-4BFC-B817-D4BCD02F2FBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Posterr.API.Test", "Posterr.API.Test\Posterr.API.Test.csproj", "{7E22395E-ACEC-47D4-9C82-781BBFCA713C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E1A8291E-BCD1-4BFC-B817-D4BCD02F2FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1A8291E-BCD1-4BFC-B817-D4BCD02F2FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1A8291E-BCD1-4BFC-B817-D4BCD02F2FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E22395E-ACEC-47D4-9C82-781BBFCA713C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E22395E-ACEC-47D4-9C82-781BBFCA713C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E22395E-ACEC-47D4-9C82-781BBFCA713C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E22395E-ACEC-47D4-9C82-781BBFCA713C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Posterr.API.Entities;
+using Posterr.API.Interfaces;
+using Posterr.API.Services;
 
 namespace Posterr.API.Controllers
 {
@@ -6,36 +9,47 @@ namespace Posterr.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        // GET: api/<UserController>
+        private IUserService _userService;
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<User>> GetUser(int userId)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                if (userId <= 0)
+                    return BadRequest("UserId must be valid");
+
+                var user = _userService.GetUser(userId);
+
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [Route("today")]
+        [HttpGet]
+        public ActionResult<int> GetTodayPostUsage(int userId)
         {
-            return "value";
-        }
+            try
+            {
+                if (userId <= 0)
+                    return BadRequest("UserId must be valid");
 
-        // POST api/<UserController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+                int usage = _userService.GetTodayPostsUsage(userId);
 
-        // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+                return Ok(usage);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

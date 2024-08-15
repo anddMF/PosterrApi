@@ -1,9 +1,10 @@
 ﻿using Posterr.API.Infrastructure.Factories;
+using Posterr.API.Interfaces;
 using System.Data;
 
 namespace Posterr.API.Infrastructure.DAL
 {
-    public class DBCommunication
+    public class DBCommunication : IDBCommunication
     {
         private ConnectionFactory _connection;
         public DBCommunication(string connectionString)
@@ -14,12 +15,12 @@ namespace Posterr.API.Infrastructure.DAL
         /// <summary>
         /// Executes a procedure that will make operations on the database, i.e. insert, update or delete.
         /// </summary>
-        /// <param name="procName"></param>
+        /// <param name="name"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        public dynamic ExecuteOperation(string procName, Dictionary<string, object> param)
+        public dynamic ExecuteOperation(string name, Dictionary<string, object> param)
         {
-            var result = _connection.ExecuteScalar(procName, CommandType.StoredProcedure, param);
+            var result = _connection.ExecuteScalar(name, CommandType.StoredProcedure, param);
             return result;
         }
 
@@ -27,13 +28,13 @@ namespace Posterr.API.Infrastructure.DAL
         /// Executes and returns select queries.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="procName"></param>
+        /// <param name="name"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        public List<T> ExecuteGet<T>(string procName, Dictionary<string, dynamic> param)
+        public List<T> ExecuteGet<T>(string name, Dictionary<string, dynamic> param)
         {
             DataTable dt = new DataTable();
-            var sqlResult = _connection.GetReader(procName, CommandType.StoredProcedure, param);
+            var sqlResult = _connection.GetReader(name, CommandType.StoredProcedure, param);
             dt.Load(sqlResult);
 
             var result = TranslateDataTable<T>(dt);

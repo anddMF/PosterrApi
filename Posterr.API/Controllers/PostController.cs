@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Posterr.API.Entities;
+using Posterr.API.Interfaces;
+using Posterr.API.Services;
 
 namespace Posterr.API.Controllers
 {
@@ -6,36 +9,56 @@ namespace Posterr.API.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
-        // GET: api/<PostController>
+        private IPostService _postService;
+        public PostController(IPostService postService)
+        {
+            _postService = postService;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<string>> GetPosts([FromQuery] PostQueryParameters queryParameters)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                if (!queryParameters.GetAll && (!queryParameters.UserId.HasValue || queryParameters.UserId.Value <= 0))
+                    return BadRequest("UserId must be valid if param GetAll is false");
+
+                var posts = _postService.GetPosts(queryParameters);
+
+                return Ok(posts);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        // GET api/<PostController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [Route("types")]
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> GetPostTypes()
         {
-            return "value";
+            try
+            {
+                return Ok(new string[] { "value1", "value2" });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        // POST api/<PostController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] PostBody post)
         {
-        }
-
-        // PUT api/<PostController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<PostController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            try
+            {
+                _postService.InsertPost(post);
+                return StatusCode(201);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
