@@ -16,6 +16,11 @@ namespace Posterr.API.Services
             _dbComm = _dbCommFactory.Create(AppSettings.ConnectionStrings.MainDB);
         }
 
+        /// <summary>
+        /// Retrieves a list of posts based on the provided query parameters.
+        /// </summary>
+        /// <param name="queryParameters"></param>
+        /// <returns></returns>
         public List<Post> GetPosts(PostQueryParameters queryParameters)
         {
             Dictionary<string, dynamic> param = ParamGetPosts(queryParameters.GetAll, queryParameters.PageNumber, queryParameters.PageSize, queryParameters.UserId, queryParameters.StartDate, queryParameters.EndDate);
@@ -26,13 +31,17 @@ namespace Posterr.API.Services
             return response;
         }
 
-        // Assumes that the frontend is validating the posts amount from the user
-        public void InsertPost(PostBody obj)
+        /// <summary>
+        /// Inserts a new post into the database.
+        /// </summary>
+        /// <param name="body"></param>
+        /// <exception cref="Exception"></exception>
+        public void InsertPost(PostBody body)
         {
-            if (obj.IdType > 1 && !obj.IdOriginalPost.HasValue)
+            if (body.IdType > 1 && !body.IdOriginalPost.HasValue)
                 throw new Exception("Posts that are not from type ORIGINAL require an IdOriginalPost");
 
-            Dictionary<string, dynamic> param = ParamInsertPost(obj);
+            Dictionary<string, dynamic> param = ParamInsertPost(body);
             _dbComm.ExecuteOperation("STP_INSERT_POST", param);
         }
 
@@ -60,6 +69,11 @@ namespace Posterr.API.Services
             };
         }
 
+        /// <summary>
+        /// Converts a PostDAO list into a Post list.
+        /// </summary>
+        /// <param name="daoList"></param>
+        /// <returns></returns>
         private List<Post> TransformFromDAO(List<PostDAO> daoList)
         {
             List<Post> response = new List<Post>();

@@ -15,6 +15,11 @@ namespace Posterr.API.Controllers
             _postService = postService;
         }
 
+        /// <summary>
+        /// Retrieves a list of posts based on the provided query parameters, if they are complete.
+        /// </summary>
+        /// <param name="queryParameters"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IEnumerable<string>> GetPosts([FromQuery] PostQueryParameters queryParameters)
         {
@@ -33,20 +38,11 @@ namespace Posterr.API.Controllers
             }
         }
 
-        [Route("types")]
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> GetPostTypes()
-        {
-            try
-            {
-                return Ok(new string[] { "value1", "value2" });
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
+        /// <summary>
+        /// Creates new post based on the object provided.
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody] PostBody post)
         {

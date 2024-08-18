@@ -16,6 +16,11 @@ namespace Posterr.API.Services
             _dbComm = _dbCommFactory.Create(AppSettings.ConnectionStrings.MainDB);
         }
 
+        /// <summary>
+        /// Retrieves user object from the database based on the user id.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public User GetUser(int userId)
         {
             var param = new Dictionary<string, object>() { { "user_id", userId } };
@@ -24,6 +29,11 @@ namespace Posterr.API.Services
             return new User(usersDAO.First());
         }
 
+        /// <summary>
+        /// Retrieves number of posts from the user today, based on user id.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public int GetTodayPostsUsage(int userId)
         {
             User user = GetUser(userId);
