@@ -5,15 +5,22 @@ This version is using a communication with database based on stored procedures b
  
 ## Running the application
  0. You need the latest version from **[Docker](https://www.docker.com/products/docker-desktop/)** and **Docker compose**
- 1. Clone repository `git clone https://github.com/anddMF/PosterrApi`
- 2. Inside the directory where the docker-compose.yml is located, use the following: `docker-compose up --build`
- 3. Once it's finished, navigate to `http://localhost:5000/swagger/index.html`
+ 1. Clone repository 
+    ```sh
+    git clone https://github.com/anddMF/PosterrApi
+    ```
+ 2. Inside the directory where the docker-compose.yml is located, use the following: 
+    ```sh
+    docker-compose up --build
+    ```
+ 3. Once it's finished, navigate to 
+    `http://localhost:5000/swagger/index.html`
 
 ## Critique
 
 ##  Repository Structure
 
-```sh
+```bash
 └── PosterrApi/
     ├── Assets
     │   └── DB
