@@ -15,6 +15,11 @@ namespace Posterr.API.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// Returns information about the user based on the parameter provided.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetUser(int userId)
         {
@@ -33,6 +38,11 @@ namespace Posterr.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves number of posts from the user today, based on user id if its valid.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [Route("today")]
         [HttpGet]
         public ActionResult<int> GetTodayPostUsage(int userId)

@@ -62,11 +62,27 @@ namespace Posterr.API.Entities
             }
         }
 
+        /// <summary>
+        /// Add original post on the OriginalPost feature.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="content"></param>
+        /// <param name="username"></param>
+        /// <param name="postDate"></param>
+        /// <param name="idType"></param>
         public void AddOriginalPost(int id, string content, string username, DateTime postDate, int idType)
         {
             OriginalPost = new Post(id, content, username, postDate, idType);
         }
 
+        /// <summary>
+        /// Add middle layer post on the MiddlePost feature.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="content"></param>
+        /// <param name="username"></param>
+        /// <param name="postDate"></param>
+        /// <param name="idType"></param>
         public void AddMiddlePost(int id, string content, string username, DateTime postDate, int idType)
         {
             MiddlePost = new Post(id, content, username, postDate, idType);
