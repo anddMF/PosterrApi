@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS develop2024;
+use develop2024;
+
 -- USER table
 CREATE TABLE user(
     id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -9,8 +12,19 @@ CREATE TABLE user(
 
 INSERT INTO user
 (`username`,`today_posts`,`total_posts`,`registration_date`)
-VALUES ('ferreirat',0,0,NOW());
+VALUES ('user1',0,0,NOW());
 
+INSERT INTO user
+(`username`,`today_posts`,`total_posts`,`registration_date`)
+VALUES ('user2',0,4,NOW());
+
+INSERT INTO user
+(`username`,`today_posts`,`total_posts`,`registration_date`)
+VALUES ('user3',0,1,NOW());
+
+INSERT INTO user
+(`username`,`today_posts`,`total_posts`,`registration_date`)
+VALUES ('user4',0,0,NOW());
 
 -- POST-TYPE table
 CREATE TABLE post_type(
