@@ -143,6 +143,17 @@ BEGIN
 END$$
 DELIMITER ;
 
+CALL STP_INSERT_POST(1, 1, NULL, '1 original post', NOW() - INTERVAL 5 DAY);
+CALL STP_INSERT_POST(1, 1, NULL, '2 original post', NOW() - INTERVAL 4 DAY);
+CALL STP_INSERT_POST(1, 2, NULL, '3 original post', NOW() - INTERVAL 3 DAY);
+CALL STP_INSERT_POST(1, 2, NULL, '4 original post', NOW() - INTERVAL 2 DAY);
+
+CALL STP_INSERT_POST(2, 1, 3, '5 repost', NOW() - INTERVAL 1 DAY);
+CALL STP_INSERT_POST(2, 2, 1, '6 repost', NOW() - INTERVAL 5 MINUTE);
+
+CALL STP_INSERT_POST(3, 1, 6, '7 quote from repost', NOW() - INTERVAL 2 MINUTE);
+CALL STP_INSERT_POST(3, 2, 2, '8 quote from original', NOW() - INTERVAL 1 MINUTE);
+
 
 SET GLOBAL event_scheduler = ON;
 DROP EVENT IF EXISTS es_reset_today_posts;
