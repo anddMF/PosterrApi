@@ -1,5 +1,6 @@
 # Posterr.API
 
+**[Application requirements](https://onstrider.notion.site/Strider-Web-Back-end-Assessment-3-0-9dc16f041f5e4ac3913146bd7a8467c7)** <br>
 This is a .NET 6 API for managing posts with MySQL as the database. The API supports operations like retrieving and inserting posts, with features based on the documentation provided.
 This version is using a communication with database based on stored procedures because of the provided scope and to show a bit more knowledge in the SQL, but it can be done with Entity Framework as well.
  
